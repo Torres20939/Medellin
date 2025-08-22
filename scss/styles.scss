@@ -1,0 +1,57 @@
+// VARIABLES
+
+// colores
+$color-blood-red: #ad0013; // fondo principal
+$color-dark-card: #0d0d0f; // fondo oscuro para tarjetas
+$color-beige: #caa07d; // color de acento / texto secundario
+$color-white: #ffffff; // texto principal
+$color-light-gray: #f0f0f0; // fondos claros / separadores
+$color-text-dark: #333333; // texto oscuro para fondos claros
+
+// fuentes
+$font-primary: 'Montserrat', sans-serif; // fuente principal
+$font-secondary: 'Open Sans', sans-serif; // fuente secundaria
+
+// espaciados
+$spacing-unit: 1rem; // Unidad base para espaciados (16px por defecto)
+$spacing-sm: $spacing-unit * 0.5; // 8px
+$spacing-md: $spacing-unit;       // 16px
+$spacing-lg: $spacing-unit * 1.5; // 24px
+$spacing-xl: $spacing-unit * 2;   // 32px
+$spacing-xxl: $spacing-unit * 3;  // 48px
+
+// transiciones
+$transition-speed: 0.3s;
+$transition-ease: ease-in-out;
+
+// sombras
+$shadow-light: 0 4px 8px rgba(0, 0, 0, 0.1);
+$shadow-medium: 0 8px 16px rgba(0, 0, 0, 0.2);
+
+// 2.mixins
+
+// MIXIN para centrar contenido con flexbox
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+// Mixin para gradientes modernos
+@mixin modern-gradient($direction: to right, $color1: $color-blood-red, $color2: darken($color-blood-red, 15%)) {
+    background: linear-gradient($direction, $color1, $color2);
+}
+
+// mixin para estilos de tarjeta
+@mixin card-style {
+    background-color: $color-dark-card;
+    color: $color-white;
+    border-radius: 10px;
+    padding: $spacing-xl;
+    box-shadow: $shadow-medium;
+    transition: transform $transition-speed $transition-ease, box-shadow $transition-speed $transition-ease;
+
+    &:hover {
+        transform: translateY(-5px);
+    }
+}

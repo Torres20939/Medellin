@@ -1,0 +1,372 @@
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "Open Sans", sans-serif;
+  line-height: 1.6;
+  color: #ffffff;
+  background-color: #ad0013;
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Montserrat", sans-serif;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: #ffffff;
+}
+
+h1 {
+  font-size: 3.5rem;
+}
+
+h2 {
+  font-size: 2.5rem;
+}
+
+h3 {
+  font-size: 1.8rem;
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+a {
+  color: #caa07d;
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+}
+a:hover {
+  color: rgb(216.7704918033, 186.4754098361, 161.2295081967);
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+section {
+  padding: 3rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.history-section, .places-section, .culture-section, .gastronomy-section {
+  background-color: #0d0d0f;
+  color: #ffffff;
+}
+.history-section h2, .places-section h2, .culture-section h2, .gastronomy-section h2 {
+  color: #caa07d;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+header {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+header .hero-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+header .hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.6);
+  animation: zoom-in 20s infinite alternate ease-in-out;
+}
+header .hero-content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  color: #ffffff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+header .hero-content h1 {
+  font-size: 5rem;
+  margin-bottom: 0.5rem;
+  animation: fade-in-up 1s ease-out forwards;
+  animation-delay: 0.5s;
+  opacity: 0;
+}
+header .hero-content .subtitle {
+  font-size: 1.8rem;
+  font-family: "Montserrat", sans-serif;
+  color: #caa07d;
+  animation: fade-in-up 1s ease-out forwards;
+  animation-delay: 0.8s;
+  opacity: 0;
+}
+
+nav {
+  background-color: rgba(13, 13, 15, 0.9);
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+}
+nav .main-menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+nav .main-menu li {
+  margin: 0 1rem;
+}
+nav .main-menu li a {
+  color: #ffffff;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  position: relative;
+  overflow: hidden;
+}
+nav .main-menu li a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: #caa07d;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+}
+nav .main-menu li a:hover::after {
+  transform: translateX(0);
+}
+nav .main-menu li a:hover {
+  color: #caa07d;
+}
+
+main .intro-section {
+  background-color: #ad0013;
+  color: #ffffff;
+  text-align: center;
+}
+main .intro-section h2 {
+  color: #caa07d;
+  margin-bottom: 1.5rem;
+}
+main .intro-section .intro-text {
+  max-width: 800px;
+  margin: 0 auto 2rem auto;
+  font-size: 1.1rem;
+}
+main .intro-section .city-facts {
+  background-color: rgba(13, 13, 15, 0.7);
+  border-radius: 10px;
+  padding: 2rem;
+  display: inline-block;
+  text-align: left;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+main .intro-section .city-facts h3 {
+  color: #caa07d;
+  margin-bottom: 1rem;
+}
+main .intro-section .city-facts ul li {
+  margin-bottom: 0.5rem;
+}
+main .intro-section .city-facts ul li strong {
+  color: #caa07d;
+}
+main .places-section .places-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+main .places-section .places-grid .place-card {
+  background-color: #0d0d0f;
+  color: #ffffff;
+  border-radius: 10px;
+  padding: 2rem;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  text-align: center;
+}
+main .places-section .places-grid .place-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+}
+main .places-section .places-grid .place-card h3 {
+  color: #caa07d;
+  margin-bottom: 1rem;
+}
+main .places-section .places-grid .place-card p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+main .culture-section p, main .gastronomy-section p {
+  max-width: 900px;
+  margin: 0 auto 1rem auto;
+  text-align: center;
+  font-size: 1.1rem;
+}
+main .culture-section strong, main .gastronomy-section strong {
+  color: #caa07d;
+}
+
+footer {
+  background-color: #0d0d0f;
+  color: #ffffff;
+  padding: 3rem 0 1rem 0;
+  text-align: center;
+  border-top: 3px solid #caa07d;
+}
+footer .footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+footer .footer-content .footer-section {
+  flex: 1;
+  min-width: 250px;
+  text-align: left;
+}
+footer .footer-content .footer-section h3 {
+  color: #caa07d;
+  margin-bottom: 1rem;
+}
+footer .footer-content .footer-section p, footer .footer-content .footer-section li {
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+footer .footer-content .footer-section ul li a {
+  color: #ffffff;
+}
+footer .footer-content .footer-section ul li a:hover {
+  color: #caa07d;
+}
+footer .footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 1rem;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+@keyframes zoom-in {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.1);
+  }
+}
+@keyframes fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes slide-in-left {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes slide-in-right {
+  0% {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@media (max-width: 768px) {
+  h1 {
+    font-size: 3rem;
+  }
+  h2 {
+    font-size: 2rem;
+  }
+  h3 {
+    font-size: 1.5rem;
+  }
+  .hero-content h1 {
+    font-size: 3.5rem;
+  }
+  .hero-content .subtitle {
+    font-size: 1.4rem;
+  }
+  nav .main-menu {
+    flex-direction: column;
+  }
+  nav .main-menu li {
+    margin: 0.5rem 0;
+  }
+  .intro-section .city-facts {
+    padding: 1.5rem;
+  }
+  .places-section .places-grid {
+    grid-template-columns: 1fr;
+  }
+  footer .footer-content {
+    flex-direction: column;
+  }
+  footer .footer-content .footer-section {
+    text-align: center;
+  }
+}
+@media (max-width: 480px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+  h2 {
+    font-size: 1.8rem;
+  }
+  .hero-content h1 {
+    font-size: 2.8rem;
+  }
+  .hero-content .subtitle {
+    font-size: 1.2rem;
+  }
+  .container {
+    padding: 0 1rem;
+  }
+  section {
+    padding: 2rem 0;
+  }
+}
+/*
+Ejemplos de uso en HTML:
+
+<section id="inicio" class="intro-section" data-aos="fade-up" data-aos-duration="1000">
+<div class="place-card" data-aos="zoom-in" data-aos-delay="200">
+<h2 data-aos="fade-right">Historia de Medellin</h2>
+*/
+
+/*# sourceMappingURL=ejemcss.css.map */
