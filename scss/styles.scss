@@ -1,57 +1,534 @@
-// VARIABLES
+// Variables globales
 
-// colores
-$color-blood-red: #ad0013; // fondo principal
-$color-dark-card: #0d0d0f; // fondo oscuro para tarjetas
-$color-beige: #caa07d; // color de acento / texto secundario
-$color-white: #ffffff; // texto principal
-$color-light-gray: #f0f0f0; // fondos claros / separadores
-$color-text-dark: #333333; // texto oscuro para fondos claros
+// Paleta de colores principal
+$primary-black: #0a0a0a;
+$secondary-black: #1a1a1a;
+$dark-gray: #2a2a2a;
+$light-gray: #666;
+$white: #ffffff;
 
-// fuentes
-$font-primary: 'Montserrat', sans-serif; // fuente principal
-$font-secondary: 'Open Sans', sans-serif; // fuente secundaria
+// Colores de acento
+$primary-yellow: #ffd700;
+$secondary-yellow: #ffed4e;
+$primary-orange: #ff6b35;
+$secondary-orange: #ff8c42;
 
-// espaciados
-$spacing-unit: 1rem; // Unidad base para espaciados (16px por defecto)
-$spacing-sm: $spacing-unit * 0.5; // 8px
-$spacing-md: $spacing-unit;       // 16px
-$spacing-lg: $spacing-unit * 1.5; // 24px
-$spacing-xl: $spacing-unit * 2;   // 32px
-$spacing-xxl: $spacing-unit * 3;  // 48px
+// Gradientes
+$gradient-primary: linear-gradient(135deg, $primary-yellow 0%, $primary-orange 100%);
+$gradient-secondary: linear-gradient(135deg, $secondary-yellow 0%, $secondary-orange 100%);
+$gradient-dark: linear-gradient(135deg, $primary-black 0%, $secondary-black 100%);
 
-// transiciones
-$transition-speed: 0.3s;
-$transition-ease: ease-in-out;
+// Typography
+$font-primary: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+$font-secondary: Georgia, 'Times New Roman', serif;
 
-// sombras
-$shadow-light: 0 4px 8px rgba(0, 0, 0, 0.1);
-$shadow-medium: 0 8px 16px rgba(0, 0, 0, 0.2);
+// Espaciado
+$spacing-xs: 0.5rem;
+$spacing-sm: 1rem;
+$spacing-md: 2rem;
+$spacing-lg: 3rem;
+$spacing-xl: 4rem;
 
-// 2.mixins
+// Breakpoints
+$mobile: 768px;
+$tablet: 1024px;
+$desktop: 1200px;
 
-// MIXIN para centrar contenido con flexbox
-@mixin flex-center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+// Transiciones
+$transition-fast: 0.2s ease;
+$transition-medium: 0.4s ease;
+$transition-slow: 0.6s ease;
+
+
+// MIXINS REUTILIZABLES
+
+// Mixin para gradiente de texto
+@mixin gradient-text($gradient: $gradient-primary) {
+    background: $gradient;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% 200%;
+    animation: gradient-shift 3s ease infinite;
 }
 
-// Mixin para gradientes modernos
-@mixin modern-gradient($direction: to right, $color1: $color-blood-red, $color2: darken($color-blood-red, 15%)) {
-    background: linear-gradient($direction, $color1, $color2);
-}
-
-// mixin para estilos de tarjeta
-@mixin card-style {
-    background-color: $color-dark-card;
-    color: $color-white;
-    border-radius: 10px;
-    padding: $spacing-xl;
-    box-shadow: $shadow-medium;
-    transition: transform $transition-speed $transition-ease, box-shadow $transition-speed $transition-ease;
+// Mixin para efectos hover
+@mixin hover-lift ($scale: 1.05, $shadow: 0 10px 30px rgba(255, 215, 0, 0.3)) {
+    transition: all $transition-medium;
 
     &:hover {
-        transform: translateY(-5px);
+        transform: translateY(-5px) scale($scale);
+        box-shadow: $shadow;
     }
+}
+
+// Mixin para botones
+@mixin button-style($bg: $gradient-primary, $color: $primary-black) {
+    background: $bg;
+    color: $color;
+    border: none;
+    padding: $spacing-sm $spacing-md;
+    border-radius: 50px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+    transition: all $transition-medium;
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        transition: left $transition-slow;
+    }
+
+    &:hover::before {
+        left: 100%;
+    }
+
+    @include hover-lift();
+}
+
+// mixin para cards 
+@mixin card-style() {
+    background: rgba($secondary-black, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba($primary-yellow, 0.2);
+    border-radius: 20px;
+    padding: $spacing-md;
+    transition: all $transition-medium;
+
+    &:hover {
+        border-color: rgba($primary-yellow, 0.5);
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba($primary-orange, 0.2);
+    }
+}
+
+// mixin responsivo
+@mixin responsive ($breakpoint) {
+    @if $breakpoint == mobile {
+        @media (max-width: $mobile) { @content; }
+    }
+    @if $breakpoint == tablet {
+        @media (max-width: $tablet) { @content; }
+    }
+    @if $breakpoint == desktop {
+        @media (min-width: $desktop) { @content; }
+    }
+}
+
+// Animaciones
+@keyframes gradient-shift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+@keyframes fade-in-up {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 20px rgba($primary-yellow, 0.3); }
+    50% { box-shadow: 0 0 40px rgba($primary-orange, 0.6); }
+}
+
+// ESTILOS GLOBALES
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: $gradient-dark;
+    color: $white;
+    font-family: $font-primary;
+    line-height: 1.6;
+    overflow-x: hidden;
+    
+    &::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: 
+        radial-gradient(circle at 20% 80%, rgba($primary-yellow, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba($primary-orange, 0.1) 0%, transparent 50%);
+        z-index: -1;
+        animation: float 6s ease-in-out infinite;
+    }
+}
+
+.container {
+    max-width: $desktop;
+    margin: 0 auto;
+    padding: 0 $spacing-md;
+
+    @include responsive(mobile) {
+        padding: 0 $spacing-sm;
+    }
+}
+
+// HEADER STYLES
+
+header {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+
+    .hero-image {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.3s) contrast(1.2);
+            z-index: 1;
+        }
+
+        // overlay gradient
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: $gradient-dark;
+            opacity: 0.7;
+            z-index: 2;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            animation: fade-in-up 1s ease;
+
+            h1 {
+                font-size: clamp(3rem, 8vw, 8rem);
+                font-weight: 900;
+                margin-bottom: $spacing-sm;
+                @include gradient-text();
+                text-shadow: 0 5px 15px rgba($primary-black, 0.5);
+            }
+
+            .subtitle {
+                font-size: clamp(1.2rem, 3vw, 2rem);
+                color: $white;
+                font-weight: 300;
+                opacity: 0.9;
+                animation: fade-in-up 1s ease 0.3s both;
+            }
+        }
+    }
+}
+
+// ESTILOS DE NAVEGACION (NAV)
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba($primary-black, 0.95);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba($primary-yellow, 0.2);
+
+    .main-menu {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        padding: $spacing-sm 0;
+
+        @include responsive(mobile) {
+            flex-wrap: wrap;
+            gap: $spacing-xs;
+        }
+
+        li {
+            margin: 0 $spacing-md;
+
+            @include responsive(mobile) {
+                margin: $spacing-xs;
+            }
+
+            a {
+                color: white;
+                text-decoration: none;
+                font-weight: 500;
+                padding: $spacing-sm $spacing-md;
+                border-radius: 25px;
+                transition: all $transition-medium;
+                position: relative;
+
+                &::before {
+                    content: '';
+                    position: absolute;
+                    bottom: 0;
+                    left: 50%;
+                    width: 0;
+                    height: 2px;
+                    background: $gradient-primary;
+                    transition: all $transition-medium;
+                    transform: translateX(-50%);
+                }
+
+                &:hover {
+                    color: $primary-yellow;
+                    transform: translateY(-2px);
+
+                    &::before {
+                        width: 100%;
+                    }
+                }
+
+                &:active {
+                    background: rgba($primary-yellow, 0.1);
+                }
+            }
+        }
+    }
+}
+
+// MAIN CONTENT SECTIONS
+
+main {
+    section {
+        padding: $spacing-xl 0;
+        position: relative;
+
+        &:nth-child(even) {
+            background: rgba($secondary-black, 0.3);
+        }
+
+        h2 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: $spacing-lg;
+            text-align: center;
+            @include gradient-text();
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: $spacing-md;
+            opacity: 0.9;
+        }
+    }
+}
+
+// SECCION DE INTRODUCCION
+.intro-section {
+    .intro-text {
+        font-size: 1.3rem;
+        text-align: center;
+        max-width: 800px;
+        margin: 0 auto $spacing-lg;
+        font-weight: 300;
+    }
+
+    .city-facts {
+    @include card-style();
+    max-width: 600px;
+    margin: 0 auto;
+
+    h3 {
+        color: $primary-yellow;
+        margin-bottom: $spacing-md;
+        font-size: 1.5rem;
+    }
+
+    ul {
+        list-style: none;
+
+            li {
+                padding: $spacing-xs 0;
+                border-bottom: 1px solid rgba($primary-yellow, 0.1);
+
+                &:last-child {
+                    border-bottom: none;
+                }
+
+                strong {
+                    color: $primary-orange;
+                }
+            }
+        }
+    }
+}
+
+// SECCION DE LUGARES
+.places-section {
+    .places-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: $spacing-md;
+        margin-top: $spacing-lg;
+
+        .place-card {
+            @include card-style();
+            text-align: center;
+            // No es necesario una animacion ya que AOS.CSS ya maneja esto
+
+            &:nth-child(1) { animation-delay: 0.1s; }
+            &:nth-child(2) { animation-delay: 0.2s; }
+            &:nth-child(3) { animation-delay: 0.3s; }
+            &:nth-child(4) { animation-delay: 0.4s; }
+            &:nth-child(5) { animation-delay: 0.5s; }
+            &:nth-child(6) { animation-delay: 0.6s; }
+
+            h3 {
+                color: $primary-yellow;
+                margin-bottom: $spacing-sm;
+                font-size: 1.4rem;
+                transition: color 0.3s ease;
+            }
+
+            p {
+                margin-bottom: 0;
+                opacity: 0.8;
+            }
+
+            // En lugar de una animacion, se define el estado final del hover
+            // y deja que la "transicion" del mixin @card-style haga la magia
+            &:hover {
+                transform: translateY(-12px) scale(1.03); // efecto mas notorio
+                box-shadow: 0 15px 35px rgba($primary-orange, 0.4);
+
+                h3 {
+                    color: $secondary-orange;
+                }
+            }
+        }
+    }
+}
+
+// SECCION DE CULTURA
+.culture-section, .gastronomy-section {
+    p {
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+
+        strong {
+            color: $primary-orange;
+            font-weight: 600;
+        }
+    }
+}
+
+// FOOTER STYLES
+
+footer {
+    background: $primary-black;
+    border-top: 2px solid rgba($primary-yellow, 0.3);
+    padding: $spacing-xl 0 $spacing-md;
+
+    .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: $spacing-lg;
+        margin-bottom: $spacing-lg;
+
+        .footer-section {
+            h3 {
+                color: $primary-yellow;
+                margin-bottom: $spacing-md;
+                font-size: 1.3rem;
+            }
+
+            p, li {
+                opacity: 0.8;
+                margin-bottom: $spacing-xs;
+            }
+
+            ul {
+                list-style: none;
+
+                a {
+                    color: $white;
+                    text-decoration: none;
+                    transition: color $transition-fast;
+
+                    &:hover {
+                        color: $primary-orange;
+                    }
+                }
+            }
+        }
+    }
+
+    .footer-bottom {
+        text-align: center;
+        padding-top: $spacing-md;
+        border-top: 1px solid rgba($light-gray, 0.3);
+        opacity: 0.7;
+
+    }
+}
+
+// EFECTOS Y DETALLES 
+
+// scroll suave para enlaces internos
+html {
+    scroll-padding-top: 80px;
+}
+
+// efecto de parallax sutil en secciones
+section {
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: 
+            radial-gradient(circle at 10% 20%, rgba($primary-yellow, 0.03) 0%, transparent 50%),
+            radial-gradient(circle at 90% 80%, rgba($primary-orange, 0.03) 0%, transparent 50%);
+        pointer-events: none;
+        z-index: -1;
+    }
+}
+
+// MEJORA DE ACCESIBILIDAD Y FOCUS STATES
+a, button {
+    &:focus {
+        outline: 2px solid $primary-yellow;
+        outline-offset: 2px;
+    }
+}
+
+// Loading animation 
+@keyframes loading {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }

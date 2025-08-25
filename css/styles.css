@@ -1,3 +1,386 @@
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(255, 107, 53, 0.6);
+  }
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+  color: #ffffff;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 20% 80%, rgba(255, 215, 0, 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(255, 107, 53, 0.1) 0%, transparent 50%);
+  z-index: -1;
+  animation: float 6s ease-in-out infinite;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1rem;
+  }
+}
+
+header {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+header .hero-image {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+header .hero-image img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.3s) contrast(1.2);
+  z-index: 1;
+}
+header .hero-image::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+  opacity: 0.7;
+  z-index: 2;
+}
+header .hero-image .hero-content {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  animation: fade-in-up 1s ease;
+}
+header .hero-image .hero-content h1 {
+  font-size: clamp(3rem, 8vw, 8rem);
+  font-weight: 900;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, #ffd700 0%, #ff6b35 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% 200%;
+  animation: gradient-shift 3s ease infinite;
+  text-shadow: 0 5px 15px rgba(10, 10, 10, 0.5);
+}
+header .hero-image .hero-content .subtitle {
+  font-size: clamp(1.2rem, 3vw, 2rem);
+  color: #ffffff;
+  font-weight: 300;
+  opacity: 0.9;
+  animation: fade-in-up 1s ease 0.3s both;
+}
+
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(10, 10, 10, 0.95);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+}
+nav .main-menu {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  padding: 1rem 0;
+}
+@media (max-width: 768px) {
+  nav .main-menu {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+}
+nav .main-menu li {
+  margin: 0 2rem;
+}
+@media (max-width: 768px) {
+  nav .main-menu li {
+    margin: 0.5rem;
+  }
+}
+nav .main-menu li a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 1rem 2rem;
+  border-radius: 25px;
+  transition: all 0.4s ease;
+  position: relative;
+}
+nav .main-menu li a::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(135deg, #ffd700 0%, #ff6b35 100%);
+  transition: all 0.4s ease;
+  transform: translateX(-50%);
+}
+nav .main-menu li a:hover {
+  color: #ffd700;
+  transform: translateY(-2px);
+}
+nav .main-menu li a:hover::before {
+  width: 100%;
+}
+nav .main-menu li a:active {
+  background: rgba(255, 215, 0, 0.1);
+}
+
+main section {
+  padding: 4rem 0;
+  position: relative;
+}
+main section:nth-child(even) {
+  background: rgba(26, 26, 26, 0.3);
+}
+main section h2 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  margin-bottom: 3rem;
+  text-align: center;
+  background: linear-gradient(135deg, #ffd700 0%, #ff6b35 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% 200%;
+  animation: gradient-shift 3s ease infinite;
+}
+main section p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+.intro-section .intro-text {
+  font-size: 1.3rem;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 3rem;
+  font-weight: 300;
+}
+.intro-section .city-facts {
+  background: rgba(26, 26, 26, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 215, 0, 0.2);
+  border-radius: 20px;
+  padding: 2rem;
+  transition: all 0.4s ease;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.intro-section .city-facts:hover {
+  border-color: rgba(255, 215, 0, 0.5);
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(255, 107, 53, 0.2);
+}
+.intro-section .city-facts h3 {
+  color: #ffd700;
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+}
+.intro-section .city-facts ul {
+  list-style: none;
+}
+.intro-section .city-facts ul li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+}
+.intro-section .city-facts ul li:last-child {
+  border-bottom: none;
+}
+.intro-section .city-facts ul li strong {
+  color: #ff6b35;
+}
+
+.places-section .places-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+.places-section .places-grid .place-card {
+  background: rgba(26, 26, 26, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 215, 0, 0.2);
+  border-radius: 20px;
+  padding: 2rem;
+  transition: all 0.4s ease;
+  text-align: center;
+}
+.places-section .places-grid .place-card:hover {
+  border-color: rgba(255, 215, 0, 0.5);
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(255, 107, 53, 0.2);
+}
+.places-section .places-grid .place-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.places-section .places-grid .place-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.places-section .places-grid .place-card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.places-section .places-grid .place-card:nth-child(4) {
+  animation-delay: 0.4s;
+}
+.places-section .places-grid .place-card:nth-child(5) {
+  animation-delay: 0.5s;
+}
+.places-section .places-grid .place-card:nth-child(6) {
+  animation-delay: 0.6s;
+}
+.places-section .places-grid .place-card h3 {
+  color: #ffd700;
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+  transition: color 0.3s ease;
+}
+.places-section .places-grid .place-card p {
+  margin-bottom: 0;
+  opacity: 0.8;
+}
+.places-section .places-grid .place-card:hover {
+  transform: translateY(-12px) scale(1.03);
+  box-shadow: 0 15px 35px rgba(255, 107, 53, 0.4);
+}
+.places-section .places-grid .place-card:hover h3 {
+  color: #ff8c42;
+}
+
+.culture-section p, .gastronomy-section p {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.culture-section p strong, .gastronomy-section p strong {
+  color: #ff6b35;
+  font-weight: 600;
+}
+
+footer {
+  background: #0a0a0a;
+  border-top: 2px solid rgba(255, 215, 0, 0.3);
+  padding: 4rem 0 2rem;
+}
+footer .footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 3rem;
+  margin-bottom: 3rem;
+}
+footer .footer-content .footer-section h3 {
+  color: #ffd700;
+  margin-bottom: 2rem;
+  font-size: 1.3rem;
+}
+footer .footer-content .footer-section p, footer .footer-content .footer-section li {
+  opacity: 0.8;
+  margin-bottom: 0.5rem;
+}
+footer .footer-content .footer-section ul {
+  list-style: none;
+}
+footer .footer-content .footer-section ul a {
+  color: #ffffff;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+footer .footer-content .footer-section ul a:hover {
+  color: #ff6b35;
+}
+footer .footer-bottom {
+  text-align: center;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(102, 102, 102, 0.3);
+  opacity: 0.7;
+}
+
+html {
+  scroll-padding-top: 80px;
+}
+
+section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 10% 20%, rgba(255, 215, 0, 0.03) 0%, transparent 50%), radial-gradient(circle at 90% 80%, rgba(255, 107, 53, 0.03) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+a:focus, button:focus {
+  outline: 2px solid #ffd700;
+  outline-offset: 2px;
+}
+
+@keyframes loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 
 /*# sourceMappingURL=styles.css.map */

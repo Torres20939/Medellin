@@ -7,6 +7,8 @@
     <meta name="description" content="Medellin, la ciudad de la eterna primavera - Guia informatica sobre la capital paisa">
     <meta name="keywords" content="Medellin, Colombia, Capital Paisa, turismo, cultura, historia">
 
+    <!-- LINKS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -28,18 +30,18 @@
     <nav>
         <!-- Menu principal para el navbar -->
         <ul class="main-menu">
-            <li><a href="#inicio">Inicio</a></li>
-            <li><a href="#historia">Historia</a></li>
-            <li><a href="#lugares">Lugares</a></li>
-            <li><a href="#cultura">Cultura</a></li>
-            <li><a href="#tradiciones">Tradiciones</a></li>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="pages/historia.html">Historia</a></li>
+            <li><a href="pages/lugares.html">Lugares</a></li>
+            <li><a href="pages/cultura.html">Cultura</a></li>
+            <li><a href="pages/tradiciones.html">Tradiciones</a></li>
         </ul>
     </nav>
 
     <!-- Contenido principal de la pagina -->
     <main>
         <!-- seccion de introduccion -->
-        <section id="inicio" class="intro-section">
+        <section id="inicio" class="intro-section" data-aos="fade-up" data-aos-delay="200">
             <div class="container">
                 <h2>Bienvenidos a Medellin</h2>
                 <!-- Breve introduccion sobre la ciudad -->
@@ -51,7 +53,7 @@
                 </p>
 
                 <!-- Datos basicos de la ciudad -->
-                <div class="city-facts">
+                <div class="city-facts" data-aos="fade-up" data-aos-delay="200">
                     <h3>Datos de la Ciudad</h3>
                     <ul>
                         <li><strong>Poblacion:</strong> Aproximadamente 2.5 millones de habitantes en el area metropolitana</li>
@@ -66,7 +68,7 @@
 
 
         <!-- Seccion de historia -->
-        <section id="historia" class="history-section">
+        <section id="historia" class="history-section" data-aos="fade-up" data-aos-delay="200">
             <div class="container">
                 <h2>Historia de Medellin</h2>
                 <!-- Contenido sobre la historia de la ciudad -->
@@ -85,19 +87,19 @@
         </section>
 
         <!--  Seccion de lugares de interes -->
-        <section id="lugares" class="places-section">
+        <section id="lugares" class="places-section" data-aos="fade-up" data-aos-delay="200">
             <div class="container">
                 <h2>Lugares de Interes</h2>
                 <!-- Lista introductoria de sitios importantes -->
                 <div class="places-grid">
                     <div class="place-card">
                         <h3>Pueblito Paisa</h3>
-                        <p>Replica de un tipico pueblo antioqueño ubicado en el cerro Nutibara con vistas panoramicas</p>
+                        <p>Replica de un tipico pueblo antioqueño ubicado en el cerro Nutibara con vistas panoramicas.</p>
                     </div>
 
                     <div class="place-card">
                         <h3>Plaza Botero</h3>
-                        <p>Espacio publico que alberga 23 esculturas del maestro Fernando Botero</p>
+                        <p>Espacio publico que alberga 23 esculturas del maestro Fernando Botero.</p>
                     </div>
 
                     <div class="place-card">
@@ -108,19 +110,25 @@
                     <div class="place-card">
                         <h3>Comuna 13</h3>
                         <p>Famosa por su arte urbano, graffitis y escaleras electricas al aire libre,
-                            pero no solo es eso, tambien tiene otras historias que contar.
+                            pero no solo es eso, tambien alberga historias de dolor.
                         </div>
 
                     <div class="place-card">
                         <h3>Metrocable</h3>
                         <p>Sistema de teleferico integrado al metro, simbolo de inclusión social y movilidad.</p>
                     </div>
+
+                    <div class="place-card">
+                        <h3>Museo de antioquia</h3>
+                        <p>El Museo de Antioquia, antiguo Palacio Municipal, es un museo situado en el centro de Medellín que alberga colecciones con relevancia internacional.</p>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- Cultura y tradiciones -->
-        <section id="cultura" class="culture-section">
+        <section id="cultura" class="culture-section" data-aos="fade-up" data-aos-delay="200">
+
             <div class="container">
                 <h2>Cultura y Tradiciones</h2>
                 <p>
@@ -136,7 +144,7 @@
         </section>
 
         <!-- Seccion de gastronomia -->
-        <section id="gastronomia" class="gastronomy-section">
+        <section id="gastronomia" class="gastronomy-section" data-aos="fade-up" data-aos-delay="200">
             <div class="container">
                 <h2>Gastronomia Paisa</h2>
                 <!-- contenido sobre la comida tipica -->
@@ -176,9 +184,20 @@
                 <!-- CopyRight -->
                 <div class="footer-bottom">
                     <p>&copy; 2025 Medellin Turismo. Todos los derechos reservados.</p>
+                    <br>
+                    <p>Hecho con ❤️</p>
                 </div>
             </div>
         </div>
     </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- Inicializar AOS -->
+    <script>
+        AOS.init();
+    </script>
+
+
 </body>
 </html>
