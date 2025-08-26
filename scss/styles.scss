@@ -532,3 +532,160 @@ a, button {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+
+
+
+
+// ============== ESTILOS PARA HISTORIA.HTML ===============
+
+// *** Se reutilizan las variables base del proyecto principal ***
+$period-origins: #8b7355; // marron tierra para orgines
+$period-industrial: #4a90e2; // azul para industrial
+$period-violence: #dc3545; // rojo para violencia
+$period-transform: #28a745;  // verde para transformacion
+$period-recognition: #ffd700; // dorado para reconocimiento
+
+//gradientes tematicos
+$gradient-primary: linear-gradient(135deg, $primary-yellow 0%, $primary-orange 100%);
+$gradient-origins: linear-gradient(135deg, #8b7355 0%, #a0845c 100%);
+$gradient-industrial: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
+$gradient-violence: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+$gradient-transform: linear-gradient(135deg, #28a745 0%, #1e7e34 100%);
+$gradient-recognition: linear-gradient(135deg, #ffd700 0%, #ffd700 100%);
+
+// timeline variables
+$timeline-width: 4px;
+$timeline-dot-size: 16px;
+
+
+// mixin para period badges
+@mixin period-badge($bg-gradient, $text-color: $primary-black) {
+  background: $bg-gradient;
+  color: $text-color;
+  padding: $spacing-xs $spacing-md;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: inline-block;
+  margin-bottom: $spacing-sm;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  animation: pulse-glow 3s ease infinite;
+}
+
+// Mixin para story blocks tematicos
+@mixin story-block($border-color: $primary-yellow, $bg-opacity: 0.05) {
+  background: rgba($secondary-black, 0.6);
+  backdrop-filter: blur(10px);
+  border-left: 4px solid $border-color;
+  padding: $spacing-md;
+  margin-bottom: $spacing-md;
+  border-radius: 0 15px 15px 0;
+  transition: all $transition-medium;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba($border-color, $bg-opacity);
+    border-radius: 0 15px 15px 0;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity $transition-medium;
+  }
+
+  &:hover::before {
+    opacity: 1;
+  }
+}
+
+// mixin para timeline cards
+@mixin timeline-card($accent-color: $primary-yellow) {
+  background: rgba($secondary-black, 0.8);
+  border: 2px solid rgba($accent-color, 0.3);
+  border-radius: 15px;
+  padding: $spacing-md;
+  text-align: center;
+  transition: all $transition-medium;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba($accent-color, 0.1), transparent);
+    transition: left $transition-slow;
+  }
+
+  &:hover {
+    transform: translateY(-8px) scale(1.02);
+    border-color: rgba($accent-color, 0.7);
+    box-shadow: 0 20px 40px rgba($accent-color, 0.2);
+
+    &::before {
+      left: 100%;
+    }
+  }
+}
+
+// Mixin para metricas/estadisticas
+@mixin metric-display($accent-color: $primary-yellow) {
+  background: rgba($secondary-black, 0.9);
+  border-radius: 20px;
+  padding: $spacing-md;
+  text-align: center;
+  border: 2px solid rgba($accent-color, 0.3);
+  transition: all $transition-medium;
+
+  &:hover {
+    border-color: rgba($accent-color, 0.8);
+    transform: scale(1.05);
+    box-shadow: 0 15px 30px rgba($accent-color, 0.3);
+  }
+}
+
+// Reutilizar mixins de index
+@mixin hover-lift($scale: 1.05, $shadow: 0 10px 30px rgba(255, 215, 0, 0.3)) {
+  transition: all $transition-medium;
+
+  &:hover {
+    transform: translateY(-5px) scale($scale);
+    box-shadow: $shadow;
+  }
+}
+
+@mixin gradient-text($gradient: $gradient-primary) {
+  background: $gradient;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% 200%;
+  animation: gradient-shift 3s ease infinite;
+}
+
+@mixin responsive($breakpoint) {
+  @if $breakpoint == mobile {
+    @media (max-width: $mobile) { @content; }
+  }
+  @if $breakpoint == tablet {
+    @media (max-width: $tablet) { @content; }
+  }
+  @if $breakpoint == desktop {
+    @media (min-width: $desktop) { @content; }
+  }
+}
+
+// ANIMACIONES ESPECIFICAS
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
