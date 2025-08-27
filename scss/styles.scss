@@ -937,7 +937,6 @@ body {
     
     .section-header {
       text-align: center;
-      margin-bottom: $spacing-xl;
       
       .period-badge {
         @include period-badge($gradient-primary);
@@ -1482,291 +1481,360 @@ a, button {
     border: 0;
 }
 
-// ============================================
-// CULTURA SCSS - ARTE Y CULTURA MEDELLÍN
-// ============================================
+
 
 // ============================================
-// 1. VARIABLES ESPECÍFICAS
+// ESTILOS ESPECÍFICOS PARA CULTURA.HTML
 // ============================================
 
-// Colores por sección cultural (más sutiles y coherentes)
-$arte-urbano: #e67e22;
-$arte-formal: #3498db; 
-$musica: #9b59b6;
-$festivales: #f39c12;
-$memoria: #34495e;
+// Importamos solo las variables necesarias del proyecto base
+$primary-black: #0a0a0a;
+$secondary-black: #1a1a1a;
+$light-gray: #666;
+$white: #ffffff;
 
-// Gradientes específicos
-$gradient-arte-urbano: linear-gradient(135deg, $arte-urbano 0%, darken($arte-urbano, 15%) 100%);
-$gradient-arte-formal: linear-gradient(135deg, $arte-formal 0%, darken($arte-formal, 15%) 100%);
-$gradient-musica: linear-gradient(135deg, $musica 0%, darken($musica, 15%) 100%);
-$gradient-festivales: linear-gradient(135deg, $festivales 0%, darken($festivales, 15%) 100%);
-$gradient-memoria: linear-gradient(135deg, $memoria 0%, darken($memoria, 15%) 100%);
+$primary-yellow: #ffd700;
+$primary-orange: #ff6b35;
+$secondary-orange: #ff8c42;
+
+// Gradientes base
+$gradient-primary: linear-gradient(135deg, $primary-yellow 0%, $primary-orange 100%);
+$gradient-dark: linear-gradient(135deg, $primary-black 0%, $secondary-black 100%);
+
+// Tipografía y espaciado
+$font-primary: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+$spacing-xs: 0.5rem;
+$spacing-sm: 1rem;
+$spacing-md: 2rem;
+$spacing-lg: 3rem;
+$spacing-xl: 4rem;
+
+// Breakpoints
+$mobile: 768px;
+$tablet: 1024px;
+$desktop: 1200px;
+
+// Transiciones
+$transition-fast: 0.2s ease;
+$transition-medium: 0.4s ease;
 
 // ============================================
-// 2. MIXINS OPTIMIZADOS
+// MIXINS ESENCIALES
 // ============================================
 
-@mixin culture-card($accent-color: $primary-yellow) {
-  @include card-style();
-  border-left: 4px solid $accent-color;
-  
-  &:hover {
-    border-left-color: lighten($accent-color, 10%);
-    box-shadow: 0 20px 40px rgba($accent-color, 0.2);
-  }
+@mixin gradient-text($gradient: $gradient-primary) {
+    background: $gradient;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% 200%;
+    animation: gradient-shift 3s ease infinite;
 }
 
-@mixin section-colors($color) {
-  .section-title::after {
-    background: linear-gradient(90deg, $color, lighten($color, 20%));
-  }
-  
-  .cultural-spot {
-    @include culture-card($color);
-  }
-  
-  .spot-title {
-    color: $color;
-  }
-  
-  .highlight, .artist-name, .program-name, .event-name {
-    color: lighten($color, 15%);
-  }
+@mixin responsive($breakpoint) {
+    @if $breakpoint == mobile {
+        @media (max-width: $mobile) { @content; }
+    }
+    @if $breakpoint == tablet {
+        @media (max-width: $tablet) { @content; }
+    }
+    @if $breakpoint == desktop {
+        @media (min-width: $desktop) { @content; }
+    }
 }
 
-@mixin festival-grid() {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: $spacing-md;
-  margin-top: $spacing-lg;
-  
-  @include responsive(mobile) {
-    grid-template-columns: 1fr;
-    gap: $spacing-sm;
-  }
+// Mixin simplificado para cards culturales
+@mixin cultural-card() {
+    background: rgba($secondary-black, 0.7);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba($primary-yellow, 0.2);
+    border-radius: 15px;
+    padding: $spacing-md;
+    margin-bottom: $spacing-md;
+    transition: all $transition-medium;
+    
+    &:hover {
+        border-color: rgba($primary-yellow, 0.5);
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba($primary-orange, 0.2);
+    }
 }
 
 // ============================================
-// 3. LAYOUT BASE
+// ANIMACIONES
 // ============================================
+
+@keyframes gradient-shift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+@keyframes fade-in-up {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+// ============================================
+// ESTILOS BASE HEREDADOS
+// ============================================
+
+body {
+    background: $gradient-dark;
+    color: $white;
+    font-family: $font-primary;
+    line-height: 1.6;
+    
+    &::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: 
+            radial-gradient(circle at 20% 80%, rgba($primary-yellow, 0.08) 0%, transparent 50%),
+            radial-gradient(circle at 80% 20%, rgba($primary-orange, 0.08) 0%, transparent 50%);
+        z-index: -1;
+    }
+}
 
 .container {
-  max-width: $desktop;
-  margin: 0 auto;
-  padding: 0 $spacing-md;
-  
-  @include responsive(mobile) {
-    padding: 0 $spacing-sm;
-  }
-}
-
-// ============================================
-// 4. COMPONENTES PRINCIPALES
-// ============================================
-
-// Header
-.header {
-  background: $gradient-dark;
-  padding: $spacing-xl 0;
-  text-align: center;
-  position: relative;
-  
-  .main-title {
-    font-size: clamp(3rem, 8vw, 6rem);
-    font-weight: 900;
-    margin-bottom: $spacing-sm;
-    @include gradient-text();
-  }
-  
-  .subtitle {
-    font-size: clamp(1.2rem, 3vw, 2rem);
-    color: rgba($white, 0.9);
-    font-weight: 300;
-    max-width: 700px;
+    max-width: $desktop;
     margin: 0 auto;
-  }
-}
-
-// Main Content
-.main-content {
-  .culture-section {
-    padding: $spacing-xl 0;
+    padding: 0 $spacing-md;
     
-    &:nth-child(even) {
-      background: rgba($secondary-black, 0.3);
+    @include responsive(mobile) {
+        padding: 0 $spacing-sm;
     }
-    
-    .section-header {
-      text-align: center;
-      margin-bottom: $spacing-xl;
-      
-      .section-title {
-        font-size: clamp(2.5rem, 5vw, 4rem);
-        font-weight: 800;
-        margin-bottom: $spacing-md;
-        @include gradient-text();
-        position: relative;
-        
-        &::after {
-          content: '';
-          position: absolute;
-          bottom: -10px;
-          left: 50%;
-          width: 100px;
-          height: 4px;
-          transform: translateX(-50%);
-          border-radius: 2px;
-        }
-      }
-    }
-  }
 }
 
 // ============================================
-// 5. COMPONENTES CULTURALES
+// HEADER ESPECÍFICO PARA CULTURA
 // ============================================
 
-.cultural-spot {
-  margin-bottom: $spacing-lg;
-  
-  .spot-title {
-    font-size: clamp(1.5rem, 3vw, 2rem);
-    margin-bottom: $spacing-md;
-    font-weight: 700;
-  }
-  
-  .spot-description {
-    font-size: 1.1rem;
-    line-height: 1.8;
-    margin-bottom: $spacing-md;
-    color: rgba($white, 0.95);
-    
-    .stat {
-      font-weight: 700;
-      font-size: 1.1em;
-    }
-  }
-  
-  .source {
-    font-size: 0.9rem;
-    color: $light-gray;
-    font-style: italic;
-    opacity: 0.8;
-  }
-}
-
-// Grid de festivales
-.festivals-grid {
-  @include festival-grid();
-  
-  .festival-item {
-    @include culture-card($festivales);
+.header {
     text-align: center;
+    padding: $spacing-xl 0 $spacing-lg;
+    background: 
+        radial-gradient(circle at 50% 30%, rgba($primary-orange, 0.1) 0%, transparent 60%),
+        $gradient-dark;
     
-    .festival-name {
-      font-size: 1.3rem;
-      color: $festivales;
-      margin-bottom: $spacing-sm;
-      font-weight: 700;
-    }
-    
-    .festival-description {
-      font-size: 1rem;
-      color: rgba($white, 0.9);
-      margin-bottom: $spacing-sm;
-      
-      .year {
-        color: $primary-yellow;
-        font-weight: 700;
-      }
-    }
-  }
-}
-
-// Festival destacado
-.featured-festival {
-  @include culture-card($primary-orange);
-  border-width: 3px;
-  transform: scale(1.02);
-}
-
-// ============================================
-// 6. SECCIONES ESPECÍFICAS
-// ============================================
-
-#arte-urbano {
-  @include section-colors($arte-urbano);
-}
-
-#arte-formal {
-  @include section-colors($arte-formal);
-}
-
-#musica {
-  @include section-colors($musica);
-}
-
-#festivales {
-  @include section-colors($festivales);
-}
-
-#memoria-historica {
-  @include section-colors($memoria);
-  
-  background: rgba($secondary-black, 0.5);
-}
-
-// ============================================
-// 7. FOOTER
-// ============================================
-
-.footer {
-  background: $primary-black;
-  border-top: 3px solid rgba($primary-yellow, 0.4);
-  padding: $spacing-lg 0;
-  text-align: center;
-  
-  .footer-text {
-    font-size: 1.1rem;
-    color: rgba($white, 0.9);
-    font-weight: 300;
-  }
-}
-
-// ============================================
-// 8. RESPONSIVE DESIGN
-// ============================================
-
-@include responsive(mobile) {
-  .culture-section {
-    padding: $spacing-lg 0;
-    
-    .section-header .section-title {
-      font-size: clamp(2rem, 6vw, 2.5rem);
-    }
-  }
-  
-  .cultural-spot {
-    .spot-title {
-      font-size: clamp(1.2rem, 4vw, 1.4rem);
-    }
-    
-    .spot-description {
-      font-size: 1rem;
-    }
-  }
-}
-
-@include responsive(tablet) {
-  .header {
     .main-title {
-      font-size: clamp(2.5rem, 6vw, 4rem);
+        font-size: clamp(2.5rem, 6vw, 5rem);
+        font-weight: 900;
+        margin-bottom: $spacing-sm;
+        @include gradient-text();
+        text-shadow: 0 8px 25px rgba($primary-black, 0.6);
     }
     
     .subtitle {
-      font-size: clamp(1rem, 2.5vw, 1.4rem);
+        font-size: clamp(1rem, 2.5vw, 1.5rem);
+        color: rgba($white, 0.8);
+        font-weight: 300;
+        max-width: 600px;
+        margin: 0 auto;
     }
-  }
+}
+
+// ============================================
+// SECCIONES CULTURALES
+// ============================================
+
+.culture-section {
+    padding: $spacing-lg 0;
+    
+    &:nth-child(even) {
+        background: rgba($secondary-black, 0.2);
+    }
+    
+    .section-header {
+        text-align: center;
+        margin-bottom: $spacing-md;
+        
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            margin-bottom: $spacing-sm;
+            @include gradient-text();
+            
+            &::after {
+                content: '';
+                display: block;
+                width: 60px;
+                height: 3px;
+                background: $gradient-primary;
+                margin: $spacing-sm auto 0;
+                border-radius: 2px;
+            }
+        }
+    }
+}
+
+// ============================================
+// COMPONENTES CULTURALES
+// ============================================
+
+.cultural-spot {
+    @include cultural-card();
+    animation: fade-in-up 0.6s ease both;
+    
+    .spot-title {
+        font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+        color: $primary-yellow;
+        margin-bottom: $spacing-sm;
+        font-weight: 700;
+    }
+    
+    .spot-description {
+        font-size: 1rem;
+        line-height: 1.7;
+        color: rgba($white, 0.9);
+        
+        .highlight {
+            color: $primary-orange;
+            font-weight: 600;
+        }
+        
+        .stat {
+            color: $primary-yellow;
+            font-weight: 700;
+        }
+        
+        .artist-name,
+        .program-name,
+        .event-name {
+            color: $secondary-orange;
+            font-weight: 600;
+        }
+        
+        .activity {
+            color: rgba($white, 0.7);
+            font-style: italic;
+        }
+        
+        .year {
+            color: $primary-yellow;
+            font-weight: 600;
+        }
+    }
+}
+
+// ============================================
+// FESTIVAL DESTACADO
+// ============================================
+
+.featured-festival {
+    border: 2px solid rgba($primary-orange, 0.4);
+    position: relative;
+    
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: $gradient-primary;
+        border-radius: 15px 15px 0 0;
+    }
+    
+    &:hover {
+        border-color: rgba($primary-orange, 0.8);
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: 0 25px 50px rgba($primary-orange, 0.3);
+    }
+}
+
+// ============================================
+// GRID DE FESTIVALES
+// ============================================
+
+.festivals-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: $spacing-md;
+    margin-top: $spacing-md;
+    
+    @include responsive(mobile) {
+        grid-template-columns: 1fr;
+        gap: $spacing-sm;
+    }
+    
+    .festival-item {
+        @include cultural-card();
+        text-align: center;
+        
+        .festival-name {
+            font-size: 1.2rem;
+            color: $primary-yellow;
+            margin-bottom: $spacing-sm;
+            font-weight: 700;
+        }
+        
+        .festival-description {
+            font-size: 0.95rem;
+            color: rgba($white, 0.8);
+            margin: 0;
+        }
+    }
+}
+
+// ============================================
+// FOOTER
+// ============================================
+
+.footer {
+    background: $primary-black;
+    border-top: 2px solid rgba($primary-yellow, 0.3);
+    padding: $spacing-md 0;
+    text-align: center;
+    
+    .footer-text {
+        font-size: 1rem;
+        color: rgba($white, 0.8);
+        margin: 0;
+    }
+}
+
+// ============================================
+// RESPONSIVE FINAL
+// ============================================
+
+@include responsive(mobile) {
+    .culture-section {
+        padding: $spacing-md 0;
+        
+        .section-header .section-title {
+            font-size: clamp(1.5rem, 5vw, 2rem);
+        }
+    }
+    
+    .cultural-spot {
+        padding: $spacing-sm;
+        
+        .spot-title {
+            font-size: 1.2rem;
+        }
+        
+        .spot-description {
+            font-size: 0.95rem;
+        }
+    }
+}
+
+// ============================================
+// ESTADOS FOCUS PARA ACCESIBILIDAD
+// ============================================
+
+a, button {
+    &:focus {
+        outline: 2px solid $primary-yellow;
+        outline-offset: 2px;
+    }
 }

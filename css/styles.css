@@ -606,7 +606,6 @@ body::before {
 }
 .historia-content .historia-section .section-header {
   text-align: center;
-  margin-bottom: 4rem;
 }
 .historia-content .historia-section .section-header .period-badge {
   background: linear-gradient(135deg, #ffd700 0%, #ff6b35 100%);
@@ -1469,69 +1468,18 @@ a:focus, button:focus {
 @keyframes fade-in-up {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
-@keyframes pulse-cultural {
-  0%, 100% {
-    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
-    transform: scale(1);
-  }
-  50% {
-    box-shadow: 0 0 40px rgba(255, 107, 53, 0.6);
-    transform: scale(1.02);
-  }
-}
-@keyframes float-gentle {
-  0%, 100% {
-    transform: translateY(0px) rotate(0deg);
-  }
-  33% {
-    transform: translateY(-8px) rotate(1deg);
-  }
-  66% {
-    transform: translateY(-4px) rotate(-1deg);
-  }
-}
-@keyframes music-wave {
-  0%, 100% {
-    transform: scaleY(1);
-  }
-  50% {
-    transform: scaleY(1.5);
-  }
-}
-@keyframes festival-sparkle {
-  0%, 100% {
-    opacity: 0.3;
-    transform: scale(0.8);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.2);
-  }
-}
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 100px;
-}
-
 body {
   background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
   color: #ffffff;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  line-height: 1.7;
-  overflow-x: hidden;
+  line-height: 1.6;
 }
 body::before {
   content: "";
@@ -1540,9 +1488,8 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle at 20% 30%, rgba(231, 76, 60, 0.08) 0%, transparent 50%), radial-gradient(circle at 80% 70%, rgba(155, 89, 182, 0.08) 0%, transparent 50%), radial-gradient(circle at 50% 80%, rgba(243, 156, 18, 0.06) 0%, transparent 60%);
+  background: radial-gradient(circle at 20% 80%, rgba(255, 215, 0, 0.08) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(255, 107, 53, 0.08) 0%, transparent 50%);
   z-index: -1;
-  animation: float-gentle 12s ease-in-out infinite;
 }
 
 .container {
@@ -1557,24 +1504,12 @@ body::before {
 }
 
 .header {
-  background: radial-gradient(circle at 30% 20%, rgba(255, 107, 53, 0.15) 0%, transparent 50%), radial-gradient(circle at 70% 80%, rgba(255, 215, 0, 0.15) 0%, transparent 50%), linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
-  padding: 4rem 0;
   text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-.header::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="paint" patternUnits="userSpaceOnUse" width="20" height="20"><circle cx="10" cy="10" r="1" fill="%23ffd700" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23paint)"/></svg>');
-  animation: float-gentle 15s ease-in-out infinite;
+  padding: 4rem 0 3rem;
+  background: radial-gradient(circle at 50% 30%, rgba(255, 107, 53, 0.1) 0%, transparent 60%), linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
 }
 .header .main-title {
-  font-size: clamp(3rem, 8vw, 6rem);
+  font-size: clamp(2.5rem, 6vw, 5rem);
   font-weight: 900;
   margin-bottom: 1rem;
   background: linear-gradient(135deg, #ffd700 0%, #ff6b35 100%);
@@ -1583,363 +1518,121 @@ body::before {
   -webkit-text-fill-color: transparent;
   background-size: 200% 200%;
   animation: gradient-shift 3s ease infinite;
-  text-shadow: 0 10px 30px rgba(10, 10, 10, 0.7);
-  position: relative;
-  z-index: 2;
+  text-shadow: 0 8px 25px rgba(10, 10, 10, 0.6);
 }
 .header .subtitle {
-  font-size: clamp(1.2rem, 3vw, 2rem);
-  color: rgba(255, 255, 255, 0.9);
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  color: rgba(255, 255, 255, 0.8);
   font-weight: 300;
-  max-width: 700px;
+  max-width: 600px;
   margin: 0 auto;
-  position: relative;
-  z-index: 2;
-  animation: fade-in-up 1s ease 0.3s both;
 }
 
 .culture-section {
-  padding: 4rem 0;
-  position: relative;
+  padding: 3rem 0;
 }
 .culture-section:nth-child(even) {
-  background: rgba(26, 26, 26, 0.3);
+  background: rgba(26, 26, 26, 0.2);
 }
 .culture-section .section-header {
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
 }
 .culture-section .section-header .section-title {
-  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 800;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   background: linear-gradient(135deg, #ffd700 0%, #ff6b35 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-size: 200% 200%;
   animation: gradient-shift 3s ease infinite;
-  position: relative;
 }
 .culture-section .section-header .section-title::after {
   content: "";
-  position: absolute;
-  bottom: -10px;
-  left: 50%;
-  width: 100px;
-  height: 4px;
+  display: block;
+  width: 60px;
+  height: 3px;
   background: linear-gradient(135deg, #ffd700 0%, #ff6b35 100%);
-  transform: translateX(-50%);
+  margin: 1rem auto 0;
   border-radius: 2px;
-}
-.culture-section#arte-urbano .section-title::after {
-  background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
-}
-.culture-section#arte-urbano .cultural-spot {
-  background: rgba(26, 26, 26, 0.8);
-  backdrop-filter: blur(15px);
-  border: 2px solid rgba(231, 76, 60, 0.3);
-  border-radius: 20px;
-  padding: 2rem;
-  transition: all 0.4s ease;
-  position: relative;
-  overflow: hidden;
-}
-.culture-section#arte-urbano .cultural-spot::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 4px;
-  background: linear-gradient(90deg, #e74c3c, rgb(242.1780821918, 159.3698630137, 150.8219178082));
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.4s ease;
-}
-.culture-section#arte-urbano .cultural-spot:hover {
-  border-color: rgba(231, 76, 60, 0.7);
-  transform: translateY(-10px) scale(1.02);
-  box-shadow: 0 25px 50px rgba(231, 76, 60, 0.25);
-}
-.culture-section#arte-urbano .cultural-spot:hover::before {
-  transform: scaleX(1);
-}
-.culture-section#arte-formal .section-title::after {
-  background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
-}
-.culture-section#arte-formal .cultural-spot {
-  background: rgba(26, 26, 26, 0.8);
-  backdrop-filter: blur(15px);
-  border: 2px solid rgba(52, 152, 219, 0.3);
-  border-radius: 20px;
-  padding: 2rem;
-  transition: all 0.4s ease;
-  position: relative;
-  overflow: hidden;
-}
-.culture-section#arte-formal .cultural-spot::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 4px;
-  background: linear-gradient(90deg, #3498db, rgb(138.6359832636, 195.9581589958, 234.3640167364));
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.4s ease;
-}
-.culture-section#arte-formal .cultural-spot:hover {
-  border-color: rgba(52, 152, 219, 0.7);
-  transform: translateY(-10px) scale(1.02);
-  box-shadow: 0 25px 50px rgba(52, 152, 219, 0.25);
-}
-.culture-section#arte-formal .cultural-spot:hover::before {
-  transform: scaleX(1);
-}
-.culture-section#musica .section-title::after {
-  background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%);
-}
-.culture-section#musica .cultural-spot {
-  background: rgba(26, 26, 26, 0.8);
-  backdrop-filter: blur(15px);
-  border: 2px solid rgba(155, 89, 182, 0.3);
-  border-radius: 20px;
-  padding: 2rem;
-  transition: all 0.4s ease;
-  position: relative;
-  overflow: hidden;
-}
-.culture-section#musica .cultural-spot::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 4px;
-  background: linear-gradient(90deg, #9b59b6, rgb(197.6778242678, 159.8451882845, 213.1548117155));
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.4s ease;
-}
-.culture-section#musica .cultural-spot:hover {
-  border-color: rgba(155, 89, 182, 0.7);
-  transform: translateY(-10px) scale(1.02);
-  box-shadow: 0 25px 50px rgba(155, 89, 182, 0.25);
-}
-.culture-section#musica .cultural-spot:hover::before {
-  transform: scaleX(1);
-}
-.culture-section#musica::before {
-  content: "";
-  position: absolute;
-  top: 20%;
-  right: 5%;
-  width: 200px;
-  height: 200px;
-  background: radial-gradient(circle, rgba(155, 89, 182, 0.1) 0%, transparent 70%);
-  border-radius: 50%;
-  animation: pulse-cultural 4s ease infinite;
-}
-@media (max-width: 768px) {
-  .culture-section#musica::before {
-    display: none;
-  }
-}
-.culture-section#festivales .section-title::after {
-  background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
-}
-.culture-section#festivales .cultural-spot {
-  background: rgba(26, 26, 26, 0.8);
-  backdrop-filter: blur(15px);
-  border: 2px solid rgba(243, 156, 18, 0.3);
-  border-radius: 20px;
-  padding: 2rem;
-  transition: all 0.4s ease;
-  position: relative;
-  overflow: hidden;
-}
-.culture-section#festivales .cultural-spot::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 4px;
-  background: linear-gradient(90deg, #f39c12, rgb(247.9156626506, 196.5542168675, 115.0843373494));
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.4s ease;
-}
-.culture-section#festivales .cultural-spot:hover {
-  border-color: rgba(243, 156, 18, 0.7);
-  transform: translateY(-10px) scale(1.02);
-  box-shadow: 0 25px 50px rgba(243, 156, 18, 0.25);
-}
-.culture-section#festivales .cultural-spot:hover::before {
-  transform: scaleX(1);
-}
-.culture-section#festivales .featured-festival {
-  background: rgba(26, 26, 26, 0.9);
-  backdrop-filter: blur(15px);
-  border: 2px solid rgba(243, 156, 18, 0.3);
-  border-radius: 20px;
-  padding: 2rem;
-  transition: all 0.4s ease;
-  position: relative;
-  overflow: hidden;
-  border-width: 3px;
-  transform: scale(1.02);
-  animation: pulse-cultural 6s ease infinite;
-}
-.culture-section#festivales .featured-festival::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 4px;
-  background: linear-gradient(90deg, #f39c12, rgb(247.9156626506, 196.5542168675, 115.0843373494));
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.4s ease;
-}
-.culture-section#festivales .featured-festival:hover {
-  border-color: rgba(243, 156, 18, 0.7);
-  transform: translateY(-10px) scale(1.02);
-  box-shadow: 0 25px 50px rgba(243, 156, 18, 0.25);
-}
-.culture-section#festivales .featured-festival:hover::before {
-  transform: scaleX(1);
-}
-.culture-section#memoria-historica {
-  background: radial-gradient(circle at 20% 50%, rgba(44, 62, 80, 0.1) 0%, transparent 60%), rgba(26, 26, 26, 0.5);
-}
-.culture-section#memoria-historica .section-title::after {
-  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
-}
-.culture-section#memoria-historica .cultural-spot {
-  background: rgba(26, 26, 26, 0.8);
-  backdrop-filter: blur(15px);
-  border: 2px solid rgba(44, 62, 80, 0.3);
-  border-radius: 20px;
-  padding: 2rem;
-  transition: all 0.4s ease;
-  position: relative;
-  overflow: hidden;
-}
-.culture-section#memoria-historica .cultural-spot::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 4px;
-  background: linear-gradient(90deg, #2c3e50, rgb(80.1935483871, 113, 145.8064516129));
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.4s ease;
-}
-.culture-section#memoria-historica .cultural-spot:hover {
-  border-color: rgba(44, 62, 80, 0.7);
-  transform: translateY(-10px) scale(1.02);
-  box-shadow: 0 25px 50px rgba(44, 62, 80, 0.25);
-}
-.culture-section#memoria-historica .cultural-spot:hover::before {
-  transform: scaleX(1);
 }
 
 .cultural-spot {
-  margin-bottom: 3rem;
-  animation: fade-in-up 0.8s ease both;
+  background: rgba(26, 26, 26, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 215, 0, 0.2);
+  border-radius: 15px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  transition: all 0.4s ease;
+  animation: fade-in-up 0.6s ease both;
+}
+.cultural-spot:hover {
+  border-color: rgba(255, 215, 0, 0.5);
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(255, 107, 53, 0.2);
 }
 .cultural-spot .spot-title {
-  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-size: clamp(1.2rem, 2.5vw, 1.6rem);
   color: #ffd700;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   font-weight: 700;
-  position: relative;
-}
-.cultural-spot .spot-title::before {
-  content: "✨";
-  position: absolute;
-  left: -2rem;
-  top: 0;
-  font-size: 1.2rem;
-  animation: festival-sparkle 2s ease infinite;
-}
-@media (max-width: 768px) {
-  .cultural-spot .spot-title::before {
-    display: none;
-  }
 }
 .cultural-spot .spot-description {
-  font-size: 1.1rem;
-  line-height: 1.8;
-  margin-bottom: 2rem;
-  color: rgba(255, 255, 255, 0.95);
+  font-size: 1rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.9);
 }
 .cultural-spot .spot-description .highlight {
   color: #ff6b35;
   font-weight: 600;
-  position: relative;
-  transition: color 0.2s ease;
-}
-.cultural-spot .spot-description .highlight:hover {
-  color: rgb(255, 163.0495049505, 129.5);
 }
 .cultural-spot .spot-description .stat {
   color: #ffd700;
-  font-weight: 600;
-  position: relative;
-  transition: color 0.2s ease;
   font-weight: 700;
-  font-size: 1.2em;
 }
-.cultural-spot .spot-description .stat:hover {
-  color: rgb(255, 227, 76.5);
-}
-.cultural-spot .spot-description .artist-name {
+.cultural-spot .spot-description .artist-name,
+.cultural-spot .spot-description .program-name,
+.cultural-spot .spot-description .event-name {
   color: #ff8c42;
   font-weight: 600;
-  position: relative;
-  transition: color 0.2s ease;
-  font-style: italic;
-}
-.cultural-spot .spot-description .artist-name:hover {
-  color: rgb(255, 186.5476190476, 142.5);
-}
-.cultural-spot .spot-description .program-name, .cultural-spot .spot-description .event-name {
-  color: #ffd700;
-  font-weight: 600;
-  position: relative;
-  transition: color 0.2s ease;
-  font-weight: 600;
-}
-.cultural-spot .spot-description .program-name:hover, .cultural-spot .spot-description .event-name:hover {
-  color: rgb(255, 227, 76.5);
 }
 .cultural-spot .spot-description .activity {
-  color: #999999;
+  color: rgba(255, 255, 255, 0.7);
   font-style: italic;
 }
-.cultural-spot .source {
-  font-size: 0.9rem;
-  color: #666;
-  font-style: italic;
-  opacity: 0.8;
+.cultural-spot .spot-description .year {
+  color: #ffd700;
+  font-weight: 600;
 }
-.cultural-spot .source::before {
-  content: "📚 ";
-  margin-right: 0.5rem;
+
+.featured-festival {
+  border: 2px solid rgba(255, 107, 53, 0.4);
+  position: relative;
+}
+.featured-festival::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(135deg, #ffd700 0%, #ff6b35 100%);
+  border-radius: 15px 15px 0 0;
+}
+.featured-festival:hover {
+  border-color: rgba(255, 107, 53, 0.8);
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 25px 50px rgba(255, 107, 53, 0.3);
 }
 
 .festivals-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
-  margin-top: 3rem;
+  margin-top: 2rem;
 }
 @media (max-width: 768px) {
   .festivals-grid {
@@ -1948,252 +1641,64 @@ body::before {
   }
 }
 .festivals-grid .festival-item {
-  background: rgba(26, 26, 26, 0.8);
-  backdrop-filter: blur(15px);
-  border: 2px solid rgba(243, 156, 18, 0.3);
-  border-radius: 20px;
+  background: rgba(26, 26, 26, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 215, 0, 0.2);
+  border-radius: 15px;
   padding: 2rem;
+  margin-bottom: 2rem;
   transition: all 0.4s ease;
-  position: relative;
-  overflow: hidden;
   text-align: center;
 }
-.festivals-grid .festival-item::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 4px;
-  background: linear-gradient(90deg, #f39c12, rgb(247.9156626506, 196.5542168675, 115.0843373494));
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.4s ease;
-}
 .festivals-grid .festival-item:hover {
-  border-color: rgba(243, 156, 18, 0.7);
-  transform: translateY(-10px) scale(1.02);
-  box-shadow: 0 25px 50px rgba(243, 156, 18, 0.25);
-}
-.festivals-grid .festival-item:hover::before {
-  transform: scaleX(1);
-}
-.festivals-grid .festival-item:nth-child(1) {
-  animation-delay: 0.1s;
-}
-.festivals-grid .festival-item:nth-child(2) {
-  animation-delay: 0.2s;
-}
-.festivals-grid .festival-item:nth-child(3) {
-  animation-delay: 0.3s;
-}
-.festivals-grid .festival-item:nth-child(4) {
-  animation-delay: 0.4s;
+  border-color: rgba(255, 215, 0, 0.5);
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(255, 107, 53, 0.2);
 }
 .festivals-grid .festival-item .festival-name {
-  font-size: 1.3rem;
-  color: #f39c12;
+  font-size: 1.2rem;
+  color: #ffd700;
   margin-bottom: 1rem;
   font-weight: 700;
-}
-.festivals-grid .festival-item .festival-name::before {
-  content: "🎉 ";
-  margin-right: 0.5rem;
 }
 .festivals-grid .festival-item .festival-description {
-  font-size: 1rem;
-  color: rgba(255, 255, 255, 0.9);
-  margin-bottom: 1rem;
-}
-.festivals-grid .festival-item .festival-description .year {
-  color: #ffd700;
-  font-weight: 600;
-  position: relative;
-  transition: color 0.2s ease;
-  font-weight: 700;
-}
-.festivals-grid .festival-item .festival-description .year:hover {
-  color: rgb(255, 227, 76.5);
-}
-.festivals-grid .festival-item .source {
-  font-size: 0.85rem;
-  margin-top: 1rem;
-}
-.festivals-grid .festival-item:nth-child(1):hover {
-  box-shadow: 0 25px 50px rgba(243, 156, 18, 0.4);
-}
-.festivals-grid .festival-item:nth-child(2):hover {
-  box-shadow: 0 25px 50px rgba(231, 76, 60, 0.4);
-}
-.festivals-grid .festival-item:nth-child(3):hover {
-  box-shadow: 0 25px 50px rgba(155, 89, 182, 0.4);
-}
-.festivals-grid .festival-item:nth-child(4):hover {
-  box-shadow: 0 25px 50px rgba(52, 152, 219, 0.4);
-}
-
-.culture-section#musica .cultural-spot:nth-child(3) {
-  position: relative;
-}
-.culture-section#musica .cultural-spot:nth-child(3)::after {
-  content: "🎵 🎶 🎵";
-  position: absolute;
-  top: -15px;
-  right: 2rem;
-  font-size: 1.5rem;
-  animation: music-wave 1.5s ease infinite;
-}
-@media (max-width: 768px) {
-  .culture-section#musica .cultural-spot:nth-child(3)::after {
-    display: none;
-  }
-}
-
-.featured-festival .spot-title {
-  position: relative;
-}
-.featured-festival .spot-title::after {
-  background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
-  color: #0a0a0a;
-  padding: 0.5rem 2rem;
-  border-radius: 25px;
-  font-size: 0.85rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  display: inline-block;
-  margin-bottom: 2rem;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-  position: relative;
-  overflow: hidden;
-  content: "EMBLEMA DE MEDELLÍN";
-  position: absolute;
-  top: -10px;
-  right: 0;
-  font-size: 0.7rem;
-}
-.featured-festival .spot-title::after::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transition: left 0.6s ease;
-}
-.featured-festival .spot-title::after:hover::before {
-  left: 100%;
-}
-@media (max-width: 768px) {
-  .featured-festival .spot-title::after {
-    position: static;
-    display: block;
-    margin: 1rem 0;
-  }
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
 }
 
 .footer {
   background: #0a0a0a;
-  border-top: 3px solid rgba(255, 215, 0, 0.4);
-  padding: 3rem 0;
+  border-top: 2px solid rgba(255, 215, 0, 0.3);
+  padding: 2rem 0;
   text-align: center;
-  position: relative;
-}
-.footer::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle at 25% 50%, rgba(231, 76, 60, 0.05) 0%, transparent 50%), radial-gradient(circle at 75% 50%, rgba(155, 89, 182, 0.05) 0%, transparent 50%);
-  pointer-events: none;
 }
 .footer .footer-text {
-  font-size: 1.1rem;
-  color: rgba(255, 255, 255, 0.9);
-  font-weight: 300;
-  position: relative;
-  z-index: 2;
-}
-.footer .footer-text::before {
-  content: "🎨 ";
-  margin-right: 0.5rem;
-}
-.footer .footer-text::after {
-  content: " 🎭";
-  margin-left: 0.5rem;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
 }
 
 @media (max-width: 768px) {
   .culture-section {
-    padding: 3rem 0;
+    padding: 2rem 0;
   }
   .culture-section .section-header .section-title {
-    font-size: clamp(2rem, 6vw, 2.5rem);
+    font-size: clamp(1.5rem, 5vw, 2rem);
+  }
+  .cultural-spot {
+    padding: 1rem;
   }
   .cultural-spot .spot-title {
-    font-size: clamp(1.2rem, 4vw, 1.4rem);
+    font-size: 1.2rem;
   }
   .cultural-spot .spot-description {
-    font-size: 1rem;
-  }
-  .festivals-grid .festival-item .festival-name {
-    font-size: 1.1rem;
-  }
-}
-@media (max-width: 1024px) {
-  .header .main-title {
-    font-size: clamp(2.5rem, 6vw, 4rem);
-  }
-  .header .subtitle {
-    font-size: clamp(1rem, 2.5vw, 1.4rem);
+    font-size: 0.95rem;
   }
 }
 a:focus, button:focus {
-  outline: 3px solid #ffd700;
-  outline-offset: 3px;
-  border-radius: 4px;
-}
-
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
-
-.loading {
-  opacity: 0.6;
-  pointer-events: none;
-}
-.loading::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 40px;
-  height: 40px;
-  border: 3px solid rgba(255, 215, 0, 0.3);
-  border-top: 3px solid #ffd700;
-  border-radius: 50%;
-  animation: loading 1s linear infinite;
-  transform: translate(-50%, -50%);
-}
-
-@keyframes loading {
-  0% {
-    transform: translate(-50%, -50%) rotate(0deg);
-  }
-  100% {
-    transform: translate(-50%, -50%) rotate(360deg);
-  }
+  outline: 2px solid #ffd700;
+  outline-offset: 2px;
 }
 
 /*# sourceMappingURL=styles.css.map */
